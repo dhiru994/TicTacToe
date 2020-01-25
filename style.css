@@ -66,43 +66,90 @@ body{
   top border to look it more likely removeing the border */
   border-right: none;
 }
-
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before{
+  background-color: blue;
+}
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
+  background-color: rgba(255,0,0,0.3);
+}
 
 /* now we are creating plain css to create x and o's
 so that it wont look different in diferent browers */
 
-.cell.x::before,.cell.x::after{
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.circle):hover::after,
+.board.x .cell:not(.x):not(.circle):hover::before{
   content:'';
   position: absolute;
   /* we are creating a stragint live before x and after x
   in css by position and backgroiund color */
   width: calc(var(--mark-size)*.15);
   height: var(--mark-size);
-  background-color: black;
 }
-/* using their before and after properties
-we are creating x by rotating them in opposite directions */
-
-.cell.x::before{
+/* it should not hover over cell which already hasthe value
+that is why we are using not metho */
+.cell.x::before,.board.x .cell:not(.x):not(.circle):hover::before{
   transform: rotate(45deg);
 }
-.cell.x::after{
+.cell.x::after,.board.x .cell:not(.x):not(.circle):hover::after{
   transform: rotate(-45deg);
 }
 /* now we are creating an o */
-.cell.circle::before,.cell.circle::after{
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::before,
+.board.circle .cell:not(.x):not(.circle):hover::after{
   content:'';
   position: absolute;
-/* no we set brider radius so that it going to be circle */
-border-radius: 50%;
+  /* no we set brider radius so that it going to be circle */
+  border-radius: 50%;
 }
-.cell.circle::before{
+.cell.circle::before,
+.board.circle .cell:not(.x):not(.circle):hover::before{
   width: var(--mark-size);
   height: var(--mark-size);
-  background-color: black;
 }
-.cell.circle::after{
+.cell.circle::after,
+.board.circle .cell:not(.x):not(.circle):hover::after{
   width: calc(var(--mark-size)*.8);
   height: calc(var(--mark-size)*.8);
   background-color: white;
+}
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(23, 67, 88, .9);
+  justify-content: center;
+  align-items: center;
+  color: lime;
+  font-size: 5rem;
+  flex-direction: column;
+}
+
+.winning-message button {
+  font-size: 3rem;
+  color: blue;
+  background-color: lime;
+  border: 1px solid black;
+  padding: .25em .5em;
+  cursor: pointer;
+}
+
+.winning-message button:hover {
+  background-color: blue;
+  color: lime;
+  border-color: white;
+}
+
+.winning-message.show {
+  display: flex;
 }
