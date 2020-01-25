@@ -1,0 +1,108 @@
+*,*::after, *::before{
+  box-sizing: border-box;
+  /* this is used to create a border box for sizing */
+}
+:root{
+  /* we are creating the variables with size so that we dont have to use size all the time */
+  --cell-size:100px;
+  --mark-size:calc(var(--cell-size)*.9);
+}
+body{
+  /* here first thing we set marigin to zero so that there wont be any spaces  */
+  margin:0;
+}
+.board{
+  /* here we are creating abox for our cells in html page */
+  /* we display here hieght and width to for our board with cells and
+  we display them as grid */
+  width:100vw;
+  height:100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  /* here we wann create gird colums with 3 rows so total 9 cells */
+  grid-template-columns: repeat(3,auto);
+}
+
+.cell{
+  /* now we are make our cells in a tic tac toe shape using css properties */
+  /* the above created variable is in root file we using by var notation */
+  width: var(--cell-size);
+  height: var(--cell-size);
+
+  /* this will create the 3*3 block that we need */
+  border:1px solid black;
+  /* this is to create the border between the cells */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* now we are giving pointer curson when ever the mouse will on the board  */
+  cursor:pointer;
+}
+/* if the fields are already given with an value we need show not allowed in that area */
+/* that we give followingly */
+.cell.x,.cell.circle{
+  cursor: not-allowed;
+
+}
+.cell:first-child,.cell:nth-child(2),.cell:nth-child(3){
+  /* in our grid that we decleared above to remove the
+  top border to look it more likely removeing the border */
+  border-top: none;
+}
+.cell:nth-child(1),.cell:nth-child(4),.cell:nth-child(7){
+  /* in our grid that we decleared above to remove the
+  top border to look it more likely removeing the border */
+  border-left: none;
+}
+.cell:nth-child(7),.cell:nth-child(8),.cell:nth-child(9){
+  /* in our grid that we decleared above to remove the
+  top border to look it more likely removeing the border */
+  border-bottom:  none;
+}
+.cell:nth-child(3),.cell:nth-child(6),.cell:nth-child(9){
+  /* in our grid that we decleared above to remove the
+  top border to look it more likely removeing the border */
+  border-right: none;
+}
+
+
+/* now we are creating plain css to create x and o's
+so that it wont look different in diferent browers */
+
+.cell.x::before,.cell.x::after{
+  content:'';
+  position: absolute;
+  /* we are creating a stragint live before x and after x
+  in css by position and backgroiund color */
+  width: calc(var(--mark-size)*.15);
+  height: var(--mark-size);
+  background-color: black;
+}
+/* using their before and after properties
+we are creating x by rotating them in opposite directions */
+
+.cell.x::before{
+  transform: rotate(45deg);
+}
+.cell.x::after{
+  transform: rotate(-45deg);
+}
+/* now we are creating an o */
+.cell.circle::before,.cell.circle::after{
+  content:'';
+  position: absolute;
+/* no we set brider radius so that it going to be circle */
+border-radius: 50%;
+}
+.cell.circle::before{
+  width: var(--mark-size);
+  height: var(--mark-size);
+  background-color: black;
+}
+.cell.circle::after{
+  width: calc(var(--mark-size)*.8);
+  height: calc(var(--mark-size)*.8);
+  background-color: white;
+}

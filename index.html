@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- this is for the tic toe board -->
+  <!-- here we gave class and id so that we can use for css and javascript  -->
+  <div class="board" id="board">
+    <!-- we are creating 9 different cells here tic tac toe board -->
+    <!-- here we gave cell and data-cell is the same reason we can use
+    class for css and data-cell for java script -->
+    <div class="cell x" data-cell></div>
+    <div class="cell circle" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+  <!-- Now we have to create one more div class
+  so that we can display winning message or draw -->
+  <div class="winning-message" id="winning-message">
+    <div data-winning-message-text></div>
+    <!-- above is used java script to diplay message in javascript
+    to show the winning in html page which we insert using dom in javascript page -->
+    <button id="restartButton">Restart</button>
+    <!-- this will reset the page to previouse page -stying is done in css so we keep it simple in html->
+  </div>
+<script src="script.js"></script>
+</body>
+</html>
